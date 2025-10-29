@@ -1,0 +1,59 @@
+.app-header {
+  background: #fff;
+  border-radius: 12px;
+  margin: 16px auto;
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 24px;
+  color: #000;
+}
+
+.logo span {
+  color: #444;
+}
+
+.header-menu {
+  flex: 1;
+  border-bottom: none !important; /* override antd */
+  display: flex;
+  justify-content: center;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-signin {
+  border-radius: 8px;
+}
+
+.btn-demo {
+  background: #000 !important;
+  border-radius: 8px;
+}
+
+.header-menu-mobile{
+    display: none;
+}
+
+@media (max-width: 600px) {
+  .header-menu {
+   display: none;
+  }
+  .header-actions{
+    display: none;
+  }
+  .header-menu-mobile{
+    display: block;
+  }
+}
