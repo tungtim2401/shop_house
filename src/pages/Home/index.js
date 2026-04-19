@@ -2,7 +2,7 @@ import { Layout } from "antd";
 import AppHeader from "../../sections/Header";
 import Landing from "../../sections/Landing";
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 function Home() {
   return (
