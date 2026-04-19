@@ -1,4 +1,4 @@
-import { Row, Col, Card, Typography } from "antd";
+import { Row, Col, Card, Typography, Button } from "antd";
 import {
   BarChartOutlined,
   FundOutlined,
@@ -7,10 +7,34 @@ import {
 import useLenis from "../../hooks/useLenis";
 import "./index.scss";
 import ListProduct from "./ListProduct";
+import { useState } from "react";
+import axios from 'axios';
+
 
 function Landing() {
   useLenis();
   const { Title, Paragraph } = Typography;
+  const [status, setStatus] = useState("");
+
+  const handleLaunchApp = async (appName) => {
+    try {
+      setStatus(`Đang yêu cầu mở ${appName}...`);
+
+      // Gọi xuống Local Server Node.js của bạn
+      const response = await axios.get(`http://localhost:8000/launch-app`, {
+        params: { name: appName },
+      });
+
+      if (response.data.status === "success") {
+        setStatus(`Thành công: ${response.data.message}`);
+      }
+    } catch (error) {
+      console.error("Lỗi kết nối Localhost:", error);
+      setStatus(
+        'Lỗi: Không thể kết nối với Local App. Bạn đã chạy "node index.js" chưa?',
+      );
+    }
+  };
 
   return (
     <div className="layout-container">
@@ -21,7 +45,22 @@ function Landing() {
         Thousands of businesses, from startups to enterprises, use CoreShift to
         handle payments.
       </Paragraph>
+      <div style={{ padding: "40px", textAlign: "center" }}>
+        <h1>ReactJS to Local App (APN Case)</h1>
 
+        <div style={{ margin: "20px" }}>
+          <Button onClick={() => handleLaunchApp("notepad")} >
+            Mở Notepad
+          </Button>
+          <Button onClick={() => handleLaunchApp("calc")}>
+            Mở Máy tính
+          </Button>
+        </div>
+
+        <p>
+          <b>Trạng thái:</b> {status}
+        </p>
+      </div>
       {/* Cards Section */}
       <Row gutter={[24, 24]} justify="center" style={{ marginTop: "40px" }}>
         <Col xs={24} sm={12} md={8}>
@@ -56,7 +95,7 @@ function Landing() {
           </Card>
         </Col>
       </Row>
-123
+      123
       <ListProduct />
     </div>
   );
