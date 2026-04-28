@@ -37,6 +37,7 @@ function Landing() {
 
   const handleUSB = async () => {
     const app = await axios.get("http://localhost:18650/getAbout");
+    console.log("🚀 ~ handleUSB ~ app:", app)
   };
 
   return (
