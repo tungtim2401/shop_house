@@ -8,8 +8,7 @@ import useLenis from "../../hooks/useLenis";
 import "./index.scss";
 import ListProduct from "./ListProduct";
 import { useState } from "react";
-import axios from 'axios';
-
+import axios from "axios";
 
 function Landing() {
   useLenis();
@@ -36,6 +35,10 @@ function Landing() {
     }
   };
 
+  const handleUSB = async () => {
+    const app = await axios.get("http://localhost:18650/getAbout");
+  };
+
   return (
     <div className="layout-container">
       <Title level={1} className="main-title">
@@ -49,11 +52,10 @@ function Landing() {
         <h1>ReactJS to Local App (APN Case)</h1>
 
         <div style={{ margin: "20px" }}>
-          <Button onClick={() => handleLaunchApp("notepad")} >
-            Mở Notepad
-          </Button>
-          <Button onClick={() => handleLaunchApp("calc")}>
-            Mở Máy tính
+          <Button onClick={() => handleLaunchApp("notepad")}>Mở Notepad</Button>
+          <Button onClick={() => handleLaunchApp("calc")}>Mở Máy tính</Button>
+          <Button onClick={() => handleUSB()}>
+            Mở VPbank signature plugin{" "}
           </Button>
         </div>
 
