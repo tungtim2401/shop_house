@@ -41,6 +41,8 @@ function Landing() {
     const app = await axios.post("http://localhost:18650/getAbout", formData);
     console.log("🚀 ~ handleUSB ~ app:", app)
     const cert = await axios.post("http://localhost:18650/getCert", formData);
+    console.log("🚀 ~ handleUSB ~ cert:", cert)
+
   };
 
   return (
