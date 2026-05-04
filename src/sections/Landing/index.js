@@ -36,8 +36,11 @@ function Landing() {
   };
 
   const handleUSB = async () => {
-    const app = await axios.get("http://localhost:18650/getAbout");
+    const formData = new FormData();
+    formData.append("sessionId", "1123j21hb21h3nj12j321bn");
+    const app = await axios.post("http://localhost:18650/getAbout", formData);
     console.log("🚀 ~ handleUSB ~ app:", app)
+    const cert = await axios.post("http://localhost:18650/getCert", formData);
   };
 
   return (
